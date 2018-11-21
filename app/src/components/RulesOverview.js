@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { List, ListItem } from "react-native-elements";
+import { connect } from "react-redux";
+import { Actions } from "react-native-router-flux";
 
 import { Card, CardSection, Button } from "./common";
 
@@ -10,13 +12,16 @@ class RulesOverview extends Component {
     render() {
         return (
             <ScrollView>
-                <Card>
-                    <CardSection>
-                        <Button onPress={this.onButtonPress.bind(this)}>
-                            Add Rule
-                        </Button>
-                    </CardSection>
-                </Card>
+                <CardSection>
+                    <Button
+                        onPress={() => {
+                            Actions.rules();
+                        }}
+                    >
+                        Add Rule
+                    </Button>
+                </CardSection>
+
                 <List>
                     <ListItem
                         onPress={() => console.log("Pressed")}
@@ -28,4 +33,7 @@ class RulesOverview extends Component {
     }
 }
 
-export default RulesOverview;
+export default connect(
+    null,
+    {}
+)(RulesOverview);

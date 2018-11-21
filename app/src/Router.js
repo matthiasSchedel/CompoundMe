@@ -1,11 +1,12 @@
 import React from "react";
 import { Scene, Router, Actions } from "react-native-router-flux";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Icon } from "react-native-elements";
 
 import LoginForm from "./components/LoginForm";
 import RulesOverview from "./components/RulesOverview";
 import TransactionsList from "./components/TransactionsList";
+import CreateRule from "./components/CreateRule";
 
 const IconView = ({ title, focused }) => {
     const color = focused ? "#f44242" : "#517fa4";
@@ -53,7 +54,6 @@ const RouterComponent = () => {
                 <Scene
                     key="investing"
                     titleStyle={navigationBarTitleStyle}
-                    initial
                     tabs={true}
                 >
                     <Scene
@@ -76,6 +76,15 @@ const RouterComponent = () => {
                         component={TransactionsList}
                         icon={IconView}
                         title="Transactions"
+                    />
+                </Scene>
+
+                <Scene key="rules" titleStyle={navigationBarTitleStyle}>
+                    <Scene
+                        key="createNewRule"
+                        component={CreateRule}
+                        title="Create New Rule"
+                        initial
                     />
                 </Scene>
             </Scene>
