@@ -1,0 +1,276 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf100
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid2\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid3\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid4\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2880\lin2880 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid5\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li3600\lin3600 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid6\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li4320\lin4320 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid7\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li5040\lin5040 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid8\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li5760\lin5760 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 // URL: https://developer.visa.com/capabilities/vctc/reference#vctc__customer_rules_alerts__v1__Get_Notification_Details\
+\
+//GET\'97Request: https://sandbox.api.visa.com/vctc/customerrules/v1/consumertransactioncontrols/customer/notifications\
+//Body: Accept: application/json Authorization: \{base64 encoded userid:password\}\
+\
+\
+// SAMPLE RESPONSE\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 // Body\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \{\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 "receivedTimestamp": "2018-05-31 17:27:21.023",\
+"processingTimeinMs": 140,\
+"resource": \{\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
+\ls1\ilvl1\cf2 "notificationDetails": [\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160\sl280\partightenfactor0
+\ls1\ilvl2\cf2 \{\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 "outBoundAlertsNotificationPayload": \{\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionDetails": \{\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "primaryAccountNumber": "xxx-xxxx-xxxx-xxxx-2889",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "userIdentifier": "56lin-j4awe-9x01",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "cardholderBillAmount": 10010,\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "billerCurrencyCode": "702",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "requestReceivedTimeStamp": "2018-05-31 17:23:57",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "merchantInfo": \{\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "name": "WallMart",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "addressLines": [\
+\pard\tx5260\tx5760\pardeftab720\li5760\fi-5760\sl280\partightenfactor0
+\ls1\ilvl7\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "6675 Business Center Dr"\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ],\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "city": "Highlands Ranch",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "region": "CO",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "postalCode": "80130",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "countryCode": "USA",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "merchantCategoryCode": "5310",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "currencyCode": "840"\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \}\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionOutcome": \{\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "documentID": "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550261",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionApproved": "DECLINED",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "decisionResponseTimeStamp": "2018-05-31 17:23:57",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "decisionID": "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadb",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "alertDetails": [\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{\
+\pard\tx5260\tx5760\pardeftab720\li5760\fi-5760\sl280\partightenfactor0
+\ls1\ilvl7\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "ruleCategory": "PCT_GLOBAL",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "ruleType": "NONE",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "thresholdAmount": 900,\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "alertReason": "DECLINE_BY_SPEND_LIMIT",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "controlTargetType": "CARD_LEVEL"\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \}\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ]\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionTypes": [\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "TCT_CROSS_BORDER",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "TCT_ATM_WITHDRAW"\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ]\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl3\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "outboundCallDetails": \{\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "status": "IN_PROGRESS",\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "httpResponseCode": 0\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl3\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "notificationDetailId": "ctc-vd-9f7740c8-bcfd-44dd-990c-d3889d74dc9a"\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160\sl280\partightenfactor0
+\ls1\ilvl2\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl2\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "outBoundAlertsNotificationPayload": \{\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionDetails": \{\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "primaryAccountNumber": "xxx-xxxx-xxxx-xxxx-2889",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "userIdentifier": "ctc-vn-a80e55c7-b3ce-4bce-8988-c66f87e66f59",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "cardholderBillAmount": 10010,\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "billerCurrencyCode": "702",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "requestReceivedTimeStamp": "2018-05-31 17:23:57",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "merchantInfo": \{\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "name": "WallMart",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "addressLines": [\
+\pard\tx5260\tx5760\pardeftab720\li5760\fi-5760\sl280\partightenfactor0
+\ls1\ilvl7\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "6675 Business Center Dr"\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ],\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "city": "Highlands Ranch",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "region": "CO",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "postalCode": "80130",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "countryCode": "USA",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "merchantCategoryCode": "5310",\
+\ls1\ilvl6\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "currencyCode": "840"\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \}\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionOutcome": \{\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "documentID": "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550261",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionApproved": "DECLINED",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "decisionResponseTimeStamp": "2018-05-31 17:23:57",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "decisionID": "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadb",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "alertDetails": [\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{\
+\pard\tx5260\tx5760\pardeftab720\li5760\fi-5760\sl280\partightenfactor0
+\ls1\ilvl7\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "ruleCategory": "PCT_GLOBAL",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "ruleType": "NONE",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "thresholdAmount": 900,\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "alertReason": "DECLINE_BY_SPEND_LIMIT",\
+\ls1\ilvl7\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "controlTargetType": "CARD_LEVEL"\
+\pard\tx4540\tx5040\pardeftab720\li5040\fi-5040\sl280\partightenfactor0
+\ls1\ilvl6\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \}\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ]\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "transactionTypes": [\
+\pard\tx3820\tx4320\pardeftab720\li4320\fi-4320\sl280\partightenfactor0
+\ls1\ilvl5\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "TCT_CROSS_BORDER",\
+\ls1\ilvl5\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "TCT_ATM_WITHDRAW"\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ]\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl3\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "outboundCallDetails": \{\
+\pard\tx3100\tx3600\pardeftab720\li3600\fi-3600\sl280\partightenfactor0
+\ls1\ilvl4\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "status": "IN_PROGRESS",\
+\ls1\ilvl4\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "httpResponseCode": 0\
+\pard\tx2380\tx2880\pardeftab720\li2880\fi-2880\sl280\partightenfactor0
+\ls1\ilvl3\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \},\
+\ls1\ilvl3\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "notificationDetailId": "ctc-vd-d372bc6f-ce46-4257-8e19-e1a5964b8667"\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160\sl280\partightenfactor0
+\ls1\ilvl2\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \}\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
+\ls1\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ],\
+\ls1\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 	\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "paginationData": \{\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160\sl280\partightenfactor0
+\ls1\ilvl2\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "startIndex": "1",\
+\ls1\ilvl2\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 "pageLimit": "3",\
+"firstPage": true,\
+"lastPage": true,\
+"recordCount": 2,\
+"totalCount": 2,\
+"totalPages": 1\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
+\ls1\ilvl1\cf2 \}\
+\}\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \}\
+}
