@@ -1,5 +1,5 @@
 {
-  "receivedTimestamp": "2018-05-31 17:27:21.023",
+  "receivedTimestamp": "2018-11-22 17:27:21.023",
   "processingTimeinMs": 140,
   "resource": {
     "notificationDetails": [
@@ -8,25 +8,24 @@
           "transactionDetails": {
             "primaryAccountNumber": "123-4567-8901-2345-2889",
             "userIdentifier": "56lin-j4awe-9x01",
-            "cardholderBillAmount": 10010,
+            "cardholderBillAmount": 0,
             "billerCurrencyCode": "702",
-            "requestReceivedTimeStamp": "2018-05-31 17:23:57",
+            "requestReceivedTimeStamp": "2018-11-22 17:23:57",
             "merchantInfo": {
-              "name": "WallMart",
-              "addressLines": ["6675 Business Center Dr"],
-              "city": "Highlands Ranch",
-              "region": "CO",
-              "postalCode": "80130",
-              "countryCode": "USA",
-              "merchantCategoryCode": "5310",
+              "name": "Bevestor",
+              "addressLines": ["Hamburger Allee 14"],
+              "city": "Frankfurt am Main",
+              "postalCode": "60486",
+              "countryCode": "GER",
+              "merchantCategoryCode": "0000",
               "currencyCode": "840"
             }
           },
           "transactionOutcome": {
-            "documentID": "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550261",
+            "documentID": "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550262",
             "transactionApproved": "ACCEPTED",
             "decisionResponseTimeStamp": "2018-05-31 17:23:57",
-            "decisionID": "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadb",
+            "decisionID": "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadc",
             "alertDetails": [
               {
                 "ruleCategory": "PCT_GLOBAL",
@@ -43,7 +42,7 @@
           "status": "IN_PROGRESS",
           "httpResponseCode": 0
         },
-        "notificationDetailId": "ctc-vd-9f7740c8-bcfd-44dd-990c-d3889d74dc9a"
+        "notificationDetailId": "ctc-vd-9f7740c8-bcfd-44dd-990c-d3889d74dc9b"
       }
     ],
     "paginationData": {
