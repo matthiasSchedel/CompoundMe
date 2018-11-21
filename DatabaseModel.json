@@ -1,4 +1,5 @@
 {
+    "firebaseURL": "https://symbioticon2018-e2f17.firebaseio.com/",
     "users": {
         "userId": {
             "transactions": {
