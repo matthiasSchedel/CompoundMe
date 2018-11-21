@@ -1,0 +1,28 @@
+{
+  "transactionTypes": [],
+  "transactionDetails": {
+    "billerCurrencyCode": "EUR",
+    "cardholderBillAmount": 123.23,
+    "requestReceivedTimeStamp": "2018-...",
+    "MerchantInfo": {
+      "city": "Mannheim",
+      "countryCode": "GER",
+      "currencyCode": "EUR",
+      "merchantCategoryCode": "5814",
+      "name": "McDonald's Frankfurt Galluswarte"
+    },
+    "transactionOutcome": {
+      "decisionID": "qwertzuio",
+      "decisionResponseTimeStamp": "2018-...",
+      "notificationID": "1",
+      "transactionApproved": "APPROVED",
+      "alertDetails": [
+        {
+          "ruleCategory": "PCT_TRANSACTION",
+          "ruleType": "TCT_E_COMMERCE",
+          "triggeringAppID": "abc"
+        }
+      ]
+    }
+  }
+}

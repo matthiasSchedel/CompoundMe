@@ -1,0 +1,28 @@
+version: "3.2"
+services:
+  cm_server:
+    build: ./cm_server
+    labels:
+    - "com.example.description=cm_server"
+    - "com.example.name=cm_server" 
+    ports:
+    - "3000:3000"
+    volumes: 
+    - ./cm_server/app/package.json:/app/package.js
+    - ./cm_server/app/index.js:/app/index.js
+    - ./cm_server/logs:/root/.npm/_logs/
+
+  cm_mock_shop:
+    build: ./cm_mock_shop
+    labels:
+    - "com.example.description=cm_mock_shop"
+    - "com.example.name=cm_mock_shop" 
+    ports:
+    - "8050:80"
+    volumes: 
+    - ./cm_mock_shop/public_html:/usr/local/apache2/htdocs/
+    # - ./list_view/logs:/usr/local/apache2/logs
+    # - ./ServiceModules/js/frontend.js:/usr/local/apache2/htdocs/js/frontend.js
+    # - ./ServiceModules/js/sparqlClient.js:/usr/local/apache2/htdocs/js/sparqlClient.js
+    # depends_on:
+    #   - context_server
