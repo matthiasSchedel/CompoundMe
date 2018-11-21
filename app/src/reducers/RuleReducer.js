@@ -10,7 +10,7 @@ const INITIAL_SATE = {
     ruleType: "Amount",
     showAmount: undefined,
     amount: "",
-    category: "",
+    category: "Dealers/Stations",
     loading: false
 };
 

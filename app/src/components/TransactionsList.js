@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Text, ScrollView } from "react-native";
-
-import { CardSection, Card } from "./common/";
+import { ScrollView, View, Text } from "react-native";
+import { List, ListItem } from "react-native-elements";
 
 class TransactionsList extends Component {
     render() {
@@ -9,59 +8,49 @@ class TransactionsList extends Component {
 
         return (
             <ScrollView>
-                <Card>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                    <CardSection>
-                        <Text style={textStyle}>Domino's</Text>
-                        <Text style={textStyle}>110€</Text>
-                        <Text style={textStyle}>22.11. 11:32</Text>
-                    </CardSection>
-                </Card>
+                <List>
+                    <ListItem
+                        hideChevron
+                        subtitle={
+                            <View style={styles.subtitleView}>
+                                <Text style={textStyle}>
+                                    22.11.18 - Fastfood: 400€ - Invested 5€
+                                </Text>
+                            </View>
+                        }
+                    />
+                    <ListItem
+                        hideChevron
+                        subtitle={
+                            <View style={styles.subtitleView}>
+                                <Text style={textStyle}>
+                                    21.11.18 - Services: 2€ - Invested 3€
+                                </Text>
+                            </View>
+                        }
+                    />
+                    <ListItem
+                        hideChevron
+                        subtitle={
+                            <View style={styles.subtitleView}>
+                                <Text style={textStyle}>
+                                    20.11.18 - Travel: 4.90€ - Invested 5.10€
+                                </Text>
+                            </View>
+                        }
+                    />
+                </List>
             </ScrollView>
         );
     }
 }
 
 const styles = {
+    subtitleView: {
+        flexDirection: "row",
+        paddingLeft: 10,
+        paddingTop: 5
+    },
     textStyle: {
         flex: 1,
         fontSize: 18
