@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import RulesOverview from "./components/RulesOverview";
 import TransactionsList from "./components/TransactionsList";
 import CreateRule from "./components/CreateRule";
+import InvestmentList from "./components/InvestmentList";
 
 const IconView = ({ title, focused }) => {
     const color = focused ? "#f44242" : "#517fa4";
@@ -55,6 +56,7 @@ const RouterComponent = () => {
                     key="investing"
                     titleStyle={navigationBarTitleStyle}
                     tabs={true}
+                    initial
                 >
                     <Scene
                         key="RulesOverview"
@@ -66,7 +68,7 @@ const RouterComponent = () => {
 
                     <Scene
                         key="Investments"
-                        component={RulesOverview}
+                        component={InvestmentList}
                         icon={IconView}
                         title="Investments"
                     />
