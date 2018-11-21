@@ -1,0 +1,22 @@
+{
+  "users": {
+    "IXyeQDJ1TEh4khLpg3n8J8U0ju43": {
+      "transactions": {
+        "1": {
+          "cardNr": "123-4567-8901-2345-2889",
+          "amount": 123.22,
+          "merchantName": "Domino's",
+          "merchantCategory": "fastfood",
+          "timestamp": "2018-..."
+        }
+      },
+      "rules": {},
+      "profile": {
+        "name": "Dagobert Duck"
+      }
+    }
+  },
+  "translateCardToUser": {
+    "123-4567-8901-2345-2889": "IXyeQDJ1TEh4khLpg3n8J8U0ju43"
+  }
+}

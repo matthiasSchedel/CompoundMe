@@ -6,7 +6,7 @@
       {
         "outBoundAlertsNotificationPayload": {
           "transactionDetails": {
-            "primaryAccountNumber": "xxx-xxxx-xxxx-xxxx-2889",
+            "primaryAccountNumber": "123-4567-8901-2345-2889",
             "userIdentifier": "56lin-j4awe-9x01",
             "cardholderBillAmount": 10010,
             "billerCurrencyCode": "702",
