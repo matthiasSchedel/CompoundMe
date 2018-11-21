@@ -1,21 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import firebase from "firebase";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+import Router from "./src/Router";
+export default class App extends Component {
+    componentWillMount() {
+        // Initialize Firebase
+        const config = {
+            apiKey: "AIzaSyCi3x67SV178IUIAETk8H6AqTIZVOfZKEE",
+            authDomain: "symbioticon2018-e2f17.firebaseapp.com",
+            databaseURL: "https://symbioticon2018-e2f17.firebaseio.com",
+            projectId: "symbioticon2018-e2f17",
+            storageBucket: "symbioticon2018-e2f17.appspot.com",
+            messagingSenderId: "1005305567833"
+        };
+
+        firebase.initializeApp(config);
+    }
+
+    render() {
+        return <Router />;
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
