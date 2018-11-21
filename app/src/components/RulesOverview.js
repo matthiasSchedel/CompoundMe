@@ -1,12 +1,29 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
+import { List, ListItem } from "react-native-elements";
+
+import { Card, CardSection, Button } from "./common";
 
 class RulesOverview extends Component {
+    onButtonPress() {}
+
     render() {
         return (
-            <View>
-                <Text>Hello</Text>
-            </View>
+            <ScrollView>
+                <Card>
+                    <CardSection>
+                        <Button onPress={this.onButtonPress.bind(this)}>
+                            Add Rule
+                        </Button>
+                    </CardSection>
+                </Card>
+                <List>
+                    <ListItem
+                        onPress={() => console.log("Pressed")}
+                        title="Hello World"
+                    />
+                </List>
+            </ScrollView>
         );
     }
 }

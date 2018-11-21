@@ -5,6 +5,7 @@ import { Icon } from "react-native-elements";
 
 import LoginForm from "./components/LoginForm";
 import RulesOverview from "./components/RulesOverview";
+import TransactionsList from "./components/TransactionsList";
 
 const IconView = ({ title, focused }) => {
     const color = focused ? "#f44242" : "#517fa4";
@@ -29,7 +30,6 @@ const IconView = ({ title, focused }) => {
     return (
         <View>
             <Icon name={image} size={size} type="material" color={color} />
-            <Text>{title}</Text>
         </View>
     );
 };
@@ -55,7 +55,6 @@ const RouterComponent = () => {
                     titleStyle={navigationBarTitleStyle}
                     initial
                     tabs={true}
-                    showLabel={false}
                 >
                     <Scene
                         key="RulesOverview"
@@ -74,7 +73,7 @@ const RouterComponent = () => {
 
                     <Scene
                         key="Transactions"
-                        component={RulesOverview}
+                        component={TransactionsList}
                         icon={IconView}
                         title="Transactions"
                     />
