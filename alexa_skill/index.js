@@ -4,7 +4,7 @@
 const Alexa = require("ask-sdk");
 const https = require("https");
 
-console.log('test begin ');
+
 
 const invocationName = "compound me";
 
@@ -54,13 +54,9 @@ const AMAZON_FallbackIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         let previousSpeech = getPreviousSpeechOutput(sessionAttributes);
-        if (previousSpeech === undefined || previousSpeech.outputSpeech === undefined) {
-            previousSpeech.outputSpeech = 'hallo dein Investmentbetrag in diesem Monat verläuft sich bereits auf 498 Euro. '; 
-        }
-        console.log('previous speech',previousSpeech);
 
         return responseBuilder
-            .speak('Entschuldigung ich habe das nicht verstanden, ' + stripSpeak(previousSpeech.outputSpeech))
+            .speak('Tut mir leid, das habe ich nicht verstanden ' + stripSpeak(previousSpeech.outputSpeech))
             .reprompt(stripSpeak(previousSpeech.reprompt))
             .getResponse();
     },
@@ -100,11 +96,11 @@ const AMAZON_HelpIntent_Handler =  {
         let intents = getCustomIntents();
         let sampleIntent = randomElement(intents);
 
-        let say = 'Du hast um Hilfe gebeten?. '; 
+        let say = 'Du hast nach Hilfe gefragt. '; 
 
         let previousIntent = getPreviousIntent(sessionAttributes);
         if (previousIntent && !handlerInput.requestEnvelope.session.new) {
-             say += 'Deine letzte Frage war ' + previousIntent + '. ';
+             say += 'Die Vorherige Frage lautete ' + previousIntent + '. ';
          }
         // say +=  'I understand  ' + intents.length + ' intents, '
 
@@ -112,7 +108,7 @@ const AMAZON_HelpIntent_Handler =  {
 
         return responseBuilder
             .speak(say)
-            .reprompt('try again, ' + say)
+            .reprompt('Versuche es noch einmal, ' + say)
             .getResponse();
     },
 };
@@ -128,7 +124,7 @@ const AMAZON_StopIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
 
-        let say = 'Okay, wir reden später! ';
+        let say = 'Okay, wir sprechen später! ';
 
         return responseBuilder
             .speak(say)
@@ -147,32 +143,32 @@ const AMAZON_NavigateHomeIntent_Handler =  {
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'Hallo vom AMAZON.NavigateHomeIntent. ';
+        let say = 'Hallo ich bin der AMAZON.NavigateHomeIntent. ';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('Versuche es noch einmal, ' + say)
+            .reprompt('Versuche es nochmal, ' + say)
             .getResponse();
     },
 };
 
-const monthlyInvstments_Handler =  {
+const InvestmentsMonat_Handler =  {
     canHandle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
-        return request.type === 'IntentRequest' && request.intent.name === 'monthlyInvstments' ;
+        return request.type === 'IntentRequest' && request.intent.name === 'InvestmentsMonat' ;
     },
     handle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'hallo dein Investmentbetrag in diesem Monat verläuft sich bereits auf 498 Euro. ';
+        let say = 'Diesen Monat hast bereits 493 Euro investiert.';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('versuche es nochmal ' + say)
+            .reprompt('Versuche es noch einmal', + say)
             .getResponse();
     },
 };
@@ -187,12 +183,12 @@ const InvestmentsWoche_Handler =  {
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'hallo dein Investmentbetrag in dieser Woche verläuft sich bereits auf 193 Euro. ';
+        let say = 'Du hast diesen Woche bereits 178 Euro investiert.';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('probiere es nochmal, ' + say)
+            .reprompt('Versuche es noch einmal, ' + say)
             .getResponse();
     },
 };
@@ -205,16 +201,16 @@ const LaunchRequest_Handler =  {
     handle(handlerInput) {
         const responseBuilder = handlerInput.responseBuilder;
 
-        let say = 'Hallo' + ' und Willkommen zu ' + invocationName + ' ! Sage hilfe um mehr optionen zu hören.';
+        let say = 'Hallo' + ' willkommen zu ' + invocationName + ' !.';
 
         let skillTitle = capitalize(invocationName);
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('try again, ' + say)
+            .reprompt('Versuche es noch einmal, ' + say)
             .withStandardCard('Willkommen!', 
-              'Hallo!\n dies ist eine Karte für deinen Skill, ' + skillTitle,
+              'Hallo!\n willkommen in der compound me app, ' + skillTitle,
                welcomeCardImg.smallImageUrl, welcomeCardImg.largeImageUrl)
             .getResponse();
     },
@@ -226,7 +222,7 @@ const SessionEndedHandler =  {
         return request.type === 'SessionEndedRequest';
     },
     handle(handlerInput) {
-        console.log(`Sitzung endete mit Grund: ${handlerInput.requestEnvelope.request.reason}`);
+        console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
         return handlerInput.responseBuilder.getResponse();
     }
 };
@@ -238,12 +234,12 @@ const ErrorHandler =  {
     handle(handlerInput, error) {
         const request = handlerInput.requestEnvelope.request;
 
-        console.log(`Fehler gehandelt: ${error.message}`);
+        console.log(`Error handled: ${error.message}`);
         // console.log(`Original Request was: ${JSON.stringify(request, null, 2)}`);
 
         return handlerInput.responseBuilder
-            .speak(`Entschuldigung aber du hast diesen Fehler bekommen.  ${error.message} `)
-            .reprompt(`Entschuldigung aber dein Skill hat diesen Fehler bekommen.  ${error.message} `)
+            .speak(`Sorry, your skill got this error.  ${error.message} `)
+            .reprompt(`Sorry, your skill got this error.  ${error.message} `)
             .getResponse();
     }
 };
@@ -256,12 +252,12 @@ const ErrorHandler =  {
     //    const myArray  = [ "orange", "grape", "strawberry" ];
     //    const myObject = { "city": "Boston",  "state":"Massachusetts" };
 
-const APP_ID = "amzn1.ask.skill.54dded55-b917-4004-b951-1399e9860230";  // TODO replace with your Skill ID (OPTIONAL).
+const APP_ID = "amzn1.ask.skill.54dded55-b917-4004-b951-1399e9860230"; 
 
 // 3.  Helper Functions ===================================================================
 
 function capitalize(myString) {
-    console.log('capitalize',myString);
+
      return myString.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); }) ;
 }
 
@@ -271,7 +267,6 @@ function randomElement(myArray) {
 } 
  
 function stripSpeak(str) { 
-    console.log('strip speak',str);
     return(str.replace('<speak>', '').replace('</speak>', '')); 
 } 
  
@@ -597,7 +592,7 @@ const ResponseRecordSpeechOutputInterceptor = {
  
 const ResponsePersistenceInterceptor = { 
     process(handlerInput, responseOutput) { 
-        
+ 
         const ses = (typeof responseOutput.shouldEndSession == "undefined" ? true : responseOutput.shouldEndSession); 
  
         if(ses || handlerInput.requestEnvelope.request.type == 'SessionEndedRequest') { // skill was stopped or timed out 
@@ -650,7 +645,7 @@ exports.handler = skillBuilder
         AMAZON_HelpIntent_Handler, 
         AMAZON_StopIntent_Handler, 
         AMAZON_NavigateHomeIntent_Handler, 
-        monthlyInvstments_Handler, 
+        InvestmentsMonat_Handler, 
         InvestmentsWoche_Handler, 
         LaunchRequest_Handler, 
         SessionEndedHandler
@@ -659,84 +654,84 @@ exports.handler = skillBuilder
     .addRequestInterceptors(InitMemoryAttributesInterceptor)
     .addRequestInterceptors(RequestHistoryInterceptor)
 
-
- .addResponseInterceptors(ResponsePersistenceInterceptor)
-
-
-
-    .lambda();
-
-
    // .addResponseInterceptors(ResponseRecordSpeechOutputInterceptor)
+
  // .addRequestInterceptors(RequestPersistenceInterceptor)
-  // .withTableName("askMemorySkillTable")
+ // .addResponseInterceptors(ResponsePersistenceInterceptor)
+
+ // .withTableName("askMemorySkillTable")
  // .withAutoCreateTable(true)
 
-    console.log('Test Test')
+    .lambda();
 
 
 // End of Skill code -------------------------------------------------------------
 // Static Language Model for reference
 
 const model = {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "compound me",
-            "intents": [
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": [
-                        "Abbrechen"
-                    ]
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": [
-                        "Hilfe",
-                        "Hilf mir"
-                    ]
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": [
-                        "Stop"
-                    ]
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": [
-                        "Home",
-                        "Zurück"
-                    ]
-                },
-                {
-                    "name": "monthlyInvstments",
-                    "slots": [],
-                    "samples": [
-                        "Wie viel investiere ich bereits diesen Monat",
-                        "Wie viel habe ich diesen Monat bereits investiert",
-                        "Investments diesen Monat",
-                        "Monatlich",
-                        "Wie viele Invstments Monatlich"
-                    ]
-                },
-                {
-                    "name": "InvestmentsWoche",
-                    "slots": [],
-                    "samples": [
-                        "Meine Investitionen diese Woche sind wie hoch",
-                        "Wie viel habe ich diese Woche bereits investiert",
-                        "wöchentlich",
-                        "Woche",
-                        "Diese Woche Investments"
-                    ]
-                }
-            ],
-            "types": []
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "compound me",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "Abbrechen"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "Hilfe",
+            "Hilf mir"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "Stop"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": [
+            "Home",
+            "Zurück"
+          ]
+        },
+        {
+          "name": "InvestmentsMonat",
+          "slots": [],
+          "samples": [
+            "Wie viel investiere ich bereits diesen Monat",
+            "Wie viel habe ich diesen Monat bereits investiert",
+            "Monat",
+            "Investments diesen Monat",
+            "Diesen Monat Investments",
+            "Monatlich"
+          ]
+        },
+        {
+          "name": "InvestmentsWoche",
+          "slots": [],
+          "samples": [
+            "Meine Investitionen diese Woche sind wie hoch",
+            "Wie viel habe ich diese Woche bereits investiert",
+            "wöchentlich",
+            "Woche",
+            "Investments diese Woche",
+            "Diese Woche Investments"
+          ]
+        },
+        {
+          "name": "LaunchRequest"
         }
+      ],
+      "types": []
     }
-}
+  }
+};
