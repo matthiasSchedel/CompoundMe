@@ -1,13 +1,34 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, TextInput, Keyboard } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import ToggleSwitch from "toggle-switch-react-native";
+import { Notifications } from "expo";
 
 import { CardSection, Button } from "./common";
+import { transactionFetch } from "../actions";
 
 class RulesOverview extends Component {
+    onSubmit() {
+        const localNotification = {
+            title: "Congrats - You Invested",
+            body: `You invest ${this.props.amount} keep going like that`
+        };
+
+        if (this.props.triggerNotification) {
+            Notifications.presentLocalNotificationAsync(localNotification);
+        }
+    }
+
+    handleNotification() {
+        console.warn("ok! got your notif");
+    }
+
+    async componentDidMount() {
+        Notifications.addListener(this.handleNotification);
+    }
+
     state = { isActive: true };
 
     setIsActive(active) {
@@ -21,6 +42,8 @@ class RulesOverview extends Component {
     render() {
         return (
             <ScrollView>
+                {this.props.transactionFetch()}
+                {this.onSubmit()}
                 <List>
                     <ListItem
                         key={1}
@@ -160,7 +183,27 @@ const styles = {
     }
 };
 
+const mapStateToProps = state => {
+    const { amount } = state.rule;
+
+    let lastAmount = 0;
+    let triggerNotification = false;
+    Object.entries(amount).map(item => {
+        if (
+            item[1].merchantCategory === "BEVESTOR" &&
+            new Date(item[1].timestamp) >= new Date() - 120000
+        ) {
+            lastAmount = item[1].amount;
+            triggerNotification = true;
+        }
+    });
+
+    return { amount: lastAmount, triggerNotification };
+};
+
 export default connect(
-    null,
-    {}
+    mapStateToProps,
+    { transactionFetch }
 )(RulesOverview);
+
+// && new Date(item[1].timestamp) >= new Date() - 120000

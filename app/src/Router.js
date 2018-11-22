@@ -56,7 +56,6 @@ const RouterComponent = () => {
                     key="investing"
                     titleStyle={navigationBarTitleStyle}
                     tabs={true}
-                    initial
                 >
                     <Scene
                         key="RulesOverview"

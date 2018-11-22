@@ -1,8 +1,11 @@
+import _ from "lodash";
+
 import {
     NEW_RULE_SAVED,
     SAVING_NEW_RULE,
     UPDATE_RULE,
-    AMOUNT_CHANGED
+    AMOUNT_CHANGED,
+    NEW_INVESTMENT
 } from "../actions/types";
 
 const INITIAL_SATE = {
@@ -24,6 +27,11 @@ export default (RuleReducer = (state = INITIAL_SATE, action) => {
             return { ...state, loading: true };
         case NEW_RULE_SAVED:
             return { ...state, ...INITIAL_SATE };
+        case NEW_INVESTMENT:
+            return {
+                ...state,
+                amount: action.payload
+            };
         default:
             return state;
     }

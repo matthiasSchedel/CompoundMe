@@ -5,7 +5,8 @@ import {
     SAVING_NEW_RULE,
     NEW_RULE_SAVED,
     UPDATE_RULE,
-    AMOUNT_CHANGED
+    AMOUNT_CHANGED,
+    NEW_INVESTMENT
 } from "./types";
 
 export const updateRule = ({ prop, value }) => {
@@ -45,6 +46,22 @@ export const saveRule = (amount, category, ruleType) => {
             .then(() => {
                 dispatch({ type: NEW_RULE_SAVED });
                 Actions.pop().investing();
+            });
+    };
+};
+
+export const transactionFetch = () => {
+    const { currentUser } = firebase.auth();
+
+    return dispatch => {
+        firebase
+            .database()
+            .ref(`/users/${currentUser.uid}/transactions`)
+            .on("value", snapshot => {
+                dispatch({
+                    type: NEW_INVESTMENT,
+                    payload: snapshot.val()
+                });
             });
     };
 };

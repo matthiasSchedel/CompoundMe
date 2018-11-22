@@ -9,3 +9,5 @@ export const UPDATE_RULE = "update_rule";
 export const AMOUNT_CHANGED = "amount_changed";
 export const SAVING_NEW_RULE = "saving_new_rule";
 export const NEW_RULE_SAVED = "new_rule_saved";
+// Notifications
+export const NEW_INVESTMENT = "new_investment";
