@@ -54,9 +54,10 @@ const AMAZON_FallbackIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         let previousSpeech = getPreviousSpeechOutput(sessionAttributes);
-        if (previousSpeech === undefinded || previousSpeech.outputSpeech === undefined) {
-            previousSpeech.outputSpeech = 'hallo dein Investmentbetrag in diesem Monat verl?§uft sich bereits auf 498 Euro. '; 
+        if (previousSpeech === undefined || previousSpeech.outputSpeech === undefined) {
+            previousSpeech.outputSpeech = 'hallo dein Investmentbetrag in diesem Monat verläuft sich bereits auf 498 Euro. '; 
         }
+        console.log('previous speech',previousSpeech);
 
         return responseBuilder
             .speak('Entschuldigung ich habe das nicht verstanden, ' + stripSpeak(previousSpeech.outputSpeech))
@@ -678,63 +679,64 @@ exports.handler = skillBuilder
 // Static Language Model for reference
 
 const model = {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "compound me",
-      "intents": [
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": [
-            "Abbrechen"
-          ]
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": [
-            "Hilfe",
-            "Help"
-          ]
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-            "Stop"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": [
-            "Home",
-            "ZurÃ¼ck"
-          ]
-        },
-        {
-          "name": "monthlyInvstments",
-          "slots": [],
-          "samples": [
-            "Investments diesen Monat",
-            "Monatlich",
-            "Wie viele Invstments Monatlich"
-          ]
-        },
-        {
-          "name": "InvestmentsWoche",
-          "slots": [],
-          "samples": [
-            "wÃ¶chentlich",
-            "Woche",
-            "Diese Woche Investments"
-          ]
-        },
-        {
-          "name": "LaunchRequest"
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "compound me",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "Abbrechen"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "Hilfe",
+                        "Hilf mir"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "Stop"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": [
+                        "Home",
+                        "Zurück"
+                    ]
+                },
+                {
+                    "name": "monthlyInvstments",
+                    "slots": [],
+                    "samples": [
+                        "Wie viel investiere ich bereits diesen Monat",
+                        "Wie viel habe ich diesen Monat bereits investiert",
+                        "Investments diesen Monat",
+                        "Monatlich",
+                        "Wie viele Invstments Monatlich"
+                    ]
+                },
+                {
+                    "name": "InvestmentsWoche",
+                    "slots": [],
+                    "samples": [
+                        "Meine Investitionen diese Woche sind wie hoch",
+                        "Wie viel habe ich diese Woche bereits investiert",
+                        "wöchentlich",
+                        "Woche",
+                        "Diese Woche Investments"
+                    ]
+                }
+            ],
+            "types": []
         }
-      ],
-      "types": []
     }
-  }
-};
+}
