@@ -14,7 +14,7 @@ const items =
     {
         id:1,
         name:"Pizza Speciale XXL",
-        price:15.50,
+        price:10.00,
         img:"./img/pizza.jpg",
         categoryCode:catCodes.fastfood
     },
@@ -36,7 +36,7 @@ const items =
         id:4,
         name:"Beer",
         price:1.70,
-        img:"./img/coke.jpg",
+        img:"./img/beer.jpeg",
         categoryCode:catCodes.alcohol
     },
     {

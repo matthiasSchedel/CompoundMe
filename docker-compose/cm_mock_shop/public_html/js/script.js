@@ -98,11 +98,49 @@ async function post(article_id) {
               decisionID: "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadb",
               alertDetails: [
                 {
-                  ruleCategory: "PCT_GLOBAL",
-                  ruleType: "NONE",
-                  thresholdAmount: 900,
-                  alertReason: "DECLINE_BY_SPEND_LIMIT",
-                  controlTargetType: "CARD_LEVEL"
+                  outBoundAlertsNotificationPayload: {
+                    transactionDetails: {
+                      primaryAccountNumber: params.primaryAccountNumber,
+                      userIdentifier: params.userIdentifier,
+                      cardholderBillAmount: Number(
+                        amount * Number(article.price) * 100
+                      ),
+                      billerCurrencyCode: "702",
+                      requestReceivedTimeStamp: String(new Date()),
+                      merchantInfo: {
+                        name: params.merchantName,
+                        addressLines: ["6675 Business Center Dr"],
+                        city: "Highlands Ranch",
+                        region: "CO",
+                        postalCode: "80130",
+                        countryCode: "USA",
+                        merchantCategoryCode: String(article.categoryCode),
+                        currencyCode: "840"
+                      }
+                    },
+                    transactionOutcome: {
+                      documentID: "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550261",
+                      transactionApproved: "DECLINED",
+                      decisionResponseTimeStamp: "2018-05-31 17:23:57",
+                      decisionID: "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadb",
+                      alertDetails: [
+                        {
+                          ruleCategory: "PCT_GLOBAL",
+                          ruleType: "NONE",
+                          thresholdAmount: 900,
+                          alertReason: "DECLINE_BY_SPEND_LIMIT",
+                          controlTargetType: "CARD_LEVEL"
+                        }
+                      ]
+                    },
+                    transactionTypes: ["TCT_CROSS_BORDER", "TCT_ATM_WITHDRAW"]
+                  },
+                  outboundCallDetails: {
+                    status: "IN_PROGRESS",
+                    httpResponseCode: 0
+                  },
+                  notificationDetailId:
+                    "ctc-vd-9f7740c8-bcfd-44dd-990c-d3889d74dc9a"
                 }
               ]
             },

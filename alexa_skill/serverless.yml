@@ -1,4 +1,3 @@
-
 service: aws-node-alexa-skill
 
 provider:
@@ -12,7 +11,3 @@ functions:
     arn: arn:aws:lambda:eu-west-1:900578989836:function:compoundMe
     events:
       - alexaSkill
-
-plugins:
-  - serverless-offline
-  - serverless-plugin-optimize

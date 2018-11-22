@@ -1,0 +1,25 @@
+{
+    "firebaseURL": "https://symbioticon2018-e2f17.firebaseio.com/",
+    "users": {
+        "userId": {
+            "transactions": {
+                "decisionId": {
+                    "cardNr": "123",
+                    "amount": 123,
+                    "merchantName": "123",
+                    "merchantCategory": "123",
+                    "timestamp": "2018-..."
+                }
+            },
+            "rules": {},
+            "profile": {
+                "name": "name"
+            }
+        }
+    },
+    "translateUserToCard": {
+        "cardNr": {
+            "userId": "123"
+        }
+    }
+}
