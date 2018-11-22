@@ -44,7 +44,6 @@ function getArticleById(id){
     return a;
 }
 async function post(article_id) {
-    alert('test')
     var amount = document.getElementById('amount_' + String(article_id)).value;
     console.log('amount',amount);
     var article = await getArticleById(Number(article_id));
