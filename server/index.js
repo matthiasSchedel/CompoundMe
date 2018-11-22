@@ -4,7 +4,7 @@ var firebase = require("firebase");
 var request = require("request");
 
 var sampleTransactionInvest = require("./samples/transactionSampleInvestment.json");
-const bevestor = "BEVESTOR";
+const BEVESTOR = "BEVESTOR";
 
 // initialize Firebase
 var firebaseConfig = {
@@ -31,14 +31,28 @@ app.use(bodyParser());
  * @returns {String} category parsed category String
  */
 function parseCategoryCode(categoryCode) {
-  const categories: {
-    
-  }
-  var category = "Travel";
-  if (categoryCode === "0000") {
-    return bevestor;
-  } else {
-    return category;
+  switch (categoryCode) {
+    case "0000":
+      return BEVESTOR;
+      break;
+    case "5321":
+      return "DepartmentStore";
+      break;
+    case "5462":
+      return "Bakery";
+      break;
+    case "5732":
+      return "Electronics";
+      break;
+    case "5814":
+      return "FastFood";
+      break;
+    case "5921":
+      return "Beverages";
+      break;
+
+    default:
+      break;
   }
 }
 
@@ -112,7 +126,7 @@ function getTransactionByUserIdTransaction(userid, transactionid) {
 //               cardholderBillAmount: transaction.amount * 100,
 //               requestReceivedTimeStamp: new Date(),
 //               merchantInfo: {
-//                 name: bevestor,
+//                 name: BEVESTOR,
 //                 addressLines: ["Hamburger Allee 14"],
 //                 city: "Frankfurt am Main",
 //                 postalCode: "60486",
@@ -155,9 +169,9 @@ async function getApplicableRuleByCategory(category, username) {
       );
       return newfetchedRules;
     });
-
+  console.log("newfetchedRules", newfetchedRules);
   // mock: only fetch one rule
-  return newfetchedRules[1];
+  return newfetchedRules[0];
 }
 
 /**
@@ -190,7 +204,7 @@ async function createInvestmentTransaction(transaction, username) {
       cardNumber: transaction.cardNumber,
       decisionID: transaction.decisionID + "1",
       merchantCategory: merchantCategory,
-      merchantName: bevestor,
+      merchantName: BEVESTOR,
       timestamp: transaction.timestamp,
       userId: transaction.userId
     };
@@ -276,8 +290,8 @@ async function GetUser(cardNumber, transaction) {
         ).then((value) => {
           transaction = value.val();
           //
-          // no new VISA transaction, if incoming transaction is bevestor transaction
-          if (transaction.merchantCategory != bevestor) {
+          // no new VISA transaction, if incoming transaction is BEVESTOR transaction
+          if (transaction.merchantCategory != BEVESTOR) {
             //
             // create investment visa transaction from original shopping transaction
             createInvestmentTransaction(transaction, username).then((res) => {
