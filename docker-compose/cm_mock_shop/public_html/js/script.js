@@ -1,12 +1,4 @@
-// const item = [
-//     {
-//         name:"iPhone XS",
-//         price:"",
-//     },
-//     {
 
-//     }
-// ];
 //merchantInfo
 //cardHolderBillAmount
 //requestRecieveTimeStamp
@@ -34,15 +26,30 @@ function createArticleHtml(article)
    "<h3 > " + article.name + "</h3>" +
   "  <img src=' "  + article.img + "' width='95%'/>" +
    " <p>Price: " +  article.price + "€ </p>" +
-   " <button onclick='post("+ article.price +")' width='10'>Buy NOW :) </button>" +
-    "   Amount: <input id='amount_' " + article.name +"type='text' value='0' style='width:50'>  </input>" +
+   " <button onclick='post("+article.id+")' width='10'>Buy NOW :) </button>" +
+    "   Amount: <input id='amount_" + article.id+"' type='text' value='0' style='width:50'>  </input>" +
   "</div>";
 }
+console.log('items',items)
 
+function getArticleById(id){
+    console.log('id',id);
+    let a = null;
+    items.forEach(article => {
+        if(article.id === id) 
+        {
+            a = article;
+        }
+    });
+    return a;
+}
+async function post(article_id) {
+    var amount = document.getElementById('amount_' + String(article_id)).value;
+    console.log('price',amount);
 
-async function post(article) {
-    console.log('price',article);
-    // console.log(document.getElementById('amount_' + article.name));
+    console.log("doc",);
+    var article = await getArticleById(Number(article_id));
+    console.log('article',article)
     var url = "http://0.0.0.0:3000/api/transactionDetails";
     var method = "POST";
     var postData = {
@@ -54,13 +61,13 @@ async function post(article) {
                 {
                     "outBoundAlertsNotificationPayload": {
                         "transactionDetails": {
-                            "primaryAccountNumber": "123-4567-8901-2345-2889",
-                            "userIdentifier": "56lin-j4awe-9x01",
-                            "cardholderBillAmount": 10010,
+                            "primaryAccountNumber": params.primaryAccountNumber,
+                            "userIdentifier": params.userIdentifier,
+                            "cardholderBillAmount": Number(amount*Number(article.price)*100),
                             "billerCurrencyCode": "702",
-                            "requestReceivedTimeStamp": "2018-05-31 17:23:57",
+                            "requestReceivedTimeStamp": String(new Date()),
                             "merchantInfo": {
-                                "name": "WallMart",
+                                "name": params.merchantName,
                                 "addressLines": [
                                     "6675 Business Center Dr"
                                 ],
@@ -68,7 +75,7 @@ async function post(article) {
                                 "region": "CO",
                                 "postalCode": "80130",
                                 "countryCode": "USA",
-                                "merchantCategoryCode": "5310",
+                                "merchantCategoryCode": article.categoryCode,
                                 "currencyCode": "840"
                             }
                         },
