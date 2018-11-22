@@ -32,7 +32,7 @@ app.use(bodyParser());
  * @returns {String} category parsed category String
  */
 function parseCategoryCode(categoryCode) {
-  switch (categoryCode) {
+  switch (String(categoryCode)) {
     case "0000":
       return BEVESTOR;
       break;

@@ -79,7 +79,7 @@ async function post(article_id) {
                 amount * Number(article.price) * 100
               ),
               billerCurrencyCode: "702",
-              requestReceivedTimeStamp: String(new Date()),
+              requestReceivedTimeStamp: new Date(),
               merchantInfo: {
                 name: params.merchantName,
                 addressLines: ["6675 Business Center Dr"],
