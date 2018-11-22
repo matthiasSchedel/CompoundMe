@@ -12,8 +12,10 @@ import { transactionFetch } from "../actions";
 class RulesOverview extends Component {
     onSubmit() {
         const localNotification = {
-            title: "Congrats - You Invested",
-            body: `You invest ${this.props.transaction} keep going like that`
+            title: "Spitze - weiter so!",
+            body: `Du hast gerade ${this.props.transaction.toFixed(
+                2
+            )} € in deinen Fonds eingezahlt`
         };
 
         if (this.props.triggerNotification) {
@@ -29,7 +31,7 @@ class RulesOverview extends Component {
         Notifications.addListener(this.handleNotification);
     }
 
-    state = { isActive: true };
+    state = { isActive: false };
 
     setIsActive(active) {
         this.setState({ isActive: !active });
