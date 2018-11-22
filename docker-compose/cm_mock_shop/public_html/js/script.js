@@ -13,18 +13,36 @@
 //merchantCategoryCode
 //merchantInfo.Name
 //transactionOutcome.DecisionId
-const params = 
+const params =
 {
     "primaryAccountNumber": "123-4567-8901-2345-2889",
     "userIdentifier": "56lin-j4awe-9x01",
     "requestReceivedTimeStamp": "2018-05-31 17:23:57",
     "merchantName": "WallMart"
 };
+items.forEach(article => {
+    console.log('item',article.price);
+    ros = document.getElementById('articles');
+    console.log('res',ros)
+    ros.innerHTML += createArticleHtml(article);
+});
 
 
-async function post() {
+function createArticleHtml(article)
+{
+    return    "<div class='col-sm-4' style='background:#ffffff'>"+
+   "<h3 > " + article.name + "</h3>" +
+  "  <img src=' "  + article.img + "' width='95%'/>" +
+   " <p>Price: " +  article.price + "€ </p>" +
+   " <button onclick='post("+ article.price +")' width='10'>Buy NOW :) </button>" +
+    "   Amount: <input id='amount_' " + article.name +"type='text' value='0' style='width:50'>  </input>" +
+  "</div>";
+}
 
 
+async function post(article) {
+    console.log('price',article);
+    // console.log(document.getElementById('amount_' + article.name));
     var url = "http://0.0.0.0:3000/api/transactionDetails";
     var method = "POST";
     var postData = {
@@ -100,20 +118,19 @@ async function post() {
     var request = new XMLHttpRequest();
 
     request.open(method, url, shouldBeAsync);
-    
-        request.setRequestHeader("Content-Type", "application/json");
-        request.setRequestHeader("accept", "*");
-        // request.setRequestHeader("Access-Control-Allow-Headers", "*");
-        request.setRequestHeader("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
-        request.setRequestHeader("Access-Control-Allow-Origin", "*");
-        let response;
-        try {
+
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("accept", "*");
+    // request.setRequestHeader("Access-Control-Allow-Headers", "*");
+    request.setRequestHeader("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    request.setRequestHeader("Access-Control-Allow-Origin", "*");
+    let response;
+    try {
         await request.send(JSON.stringify(postData));
         // console.log('response',request.onerror(err => console.log('err',err)));
-        } catch(err)
-        {
-            console.log('err',err);
-        }
+    } catch (err) {
+        console.log('err', err);
+    }
 
     request.onload = async function () {
 
@@ -123,7 +140,7 @@ async function post() {
         console.log('status', status);
 
 
-        
+
     }
 
 }
