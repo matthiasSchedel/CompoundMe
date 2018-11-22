@@ -13,9 +13,9 @@ const params =
     "merchantName": "WallMart"
 };
 items.forEach(article => {
-    console.log('item',article.price);
+    // console.log('item',article.price);
     ros = document.getElementById('articles');
-    console.log('res',ros)
+    // console.log('res',ros)
     ros.innerHTML += createArticleHtml(article);
 });
 
@@ -25,15 +25,15 @@ function createArticleHtml(article)
     return    "<div class='col-sm-4' style='background:#ffffff'>"+
    "<h3 > " + article.name + "</h3>" +
   "  <img src=' "  + article.img + "' width='95%'/>" +
-   " <p>Price: " +  article.price + "€ </p>" +
-   " <button onclick='post("+article.id+")' width='10'>Buy NOW :) </button>" +
+   " <p>Price: " +  article.price + "�</p>" +
+   " <button onclick='post("+article.id+")' width='50' height='20'>Buy NOW :) </button>" +
     "   Amount: <input id='amount_" + article.id+"' type='text' value='0' style='width:50'>  </input>" +
   "</div>";
 }
 console.log('items',items)
 
 function getArticleById(id){
-    console.log('id',id);
+    // console.log('id',id);
     let a = null;
     items.forEach(article => {
         if(article.id === id) 
@@ -44,13 +44,12 @@ function getArticleById(id){
     return a;
 }
 async function post(article_id) {
+    alert('test')
     var amount = document.getElementById('amount_' + String(article_id)).value;
-    console.log('price',amount);
-
-    console.log("doc",);
+    console.log('amount',amount);
     var article = await getArticleById(Number(article_id));
-    console.log('article',article)
-    var url = "http://0.0.0.0:3000/api/transactionDetails";
+    
+    var url = "http://10.0.34.244:3000/api/transactionDetails";
     var method = "POST";
     var postData = {
 

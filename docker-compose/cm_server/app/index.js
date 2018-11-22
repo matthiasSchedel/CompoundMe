@@ -16,12 +16,10 @@ firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the database service
 var db = firebase.database();
-const app_url = "http://0.0.0.0:8050";
+const app_url = "*";
 // inizialize Express
 var app = express();
-app.use(cors({
-  origin:app_url
-}));
+app.use(cors());
 app.use(bodyParser());
 
 function parseCategoryCode(categoryCode) {
