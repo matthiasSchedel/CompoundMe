@@ -4,7 +4,8 @@
   "description": "CompundMe-backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
   "keywords": [
     "compoundme"
@@ -15,6 +16,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "firebase": "^5.5.9",
-    "firebase-admin": "^6.2.0"
+    "firebase-admin": "^6.2.0",
+    "cors": "^2.8.5"
   }
 }
