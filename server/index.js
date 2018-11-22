@@ -31,18 +31,15 @@ app.use(bodyParser());
  * @returns {String} category parsed category String
  */
 function parseCategoryCode(categoryCode) {
-  // eval transformation of categoryCode to category
-  // TODO
-
+  const categories: {
+    
+  }
   var category = "Travel";
-  console.log(categoryCode);
   if (categoryCode === "0000") {
     return bevestor;
   } else {
     return category;
   }
-  // categoryCode == "0000" ? category : bevestor;
-  // return category;
 }
 
 /**
@@ -53,7 +50,6 @@ function parseCategoryCode(categoryCode) {
  */
 function pushTransactionToDb(transaction, userid) {
   return db.ref(`/users/${userid}/transactions`).push(transaction);
-  // db.ref("/users/userid/transaction") .push({ decisionID, ... })
 }
 
 /**
@@ -83,13 +79,11 @@ function getUserByPrimaryAccoutNumber(primaryAccountNumber) {
  * @returns {Object} retrieved transaction
  */
 function getTransactionByUserIdTransaction(userid, transactionid) {
-  // console.log(userid, transactionid);
   const transaction = db
     .ref(`/users/${userid}/transactions/${transactionid}`)
     .once(
       "value",
       (snapshot) => {
-        // console.log(snapshot.val());
         return snapshot.val();
       },
       (errorObject) => {
@@ -147,23 +141,22 @@ function getTransactionByUserIdTransaction(userid, transactionid) {
  * @returns {string}
  */
 async function getApplicableRuleByCategory(category, username) {
-  // get rules by username
   let newfetchedRules;
+  // get rules by username
   let rules = await db
     .ref(`/users/${username}/rules`)
     .once("value", (snapshot) => {
       // extract actual rules from firebase response
       let fetchedRules = Object.entries(snapshot.val());
 
-      // retrieve applicableRules by category
+      // only retrieve active rules with matching category
       newfetchedRules = fetchedRules.filter(
-        (item) => (item[1].active && item[1].category == category) == true
+        (item) => item[1].active && item[1].category == category
       );
       return newfetchedRules;
     });
-  // .then((res) => res);
 
-  console.log("rules", newfetchedRules[0]);
+  // mock: only fetch one rule
   return newfetchedRules[1];
 }
 
@@ -178,39 +171,43 @@ async function createInvestmentTransaction(transaction, username) {
     transaction.merchantCategory,
     username
   );
-  [ruleId, rule] = applicableRules;
-  // console.log("newrules", ruleId, rule);
+  if (applicableRules) {
+    [ruleId, rule] = applicableRules;
 
-  var newAmount;
+    var newAmount;
 
-  if (rule.ruleType == "Amount") {
-    newAmount = rule.amount;
+    if (rule.ruleType == "Amount") {
+      newAmount = rule.amount;
+    } else {
+      newAmount = Math.ceil(transaction.amount / 10) * 10 - transaction.amount;
+      newAmount = Number(newAmount.toFixed(2));
+    }
+
+    const merchantCategory = parseCategoryCode("0000");
+
+    return {
+      amount: newAmount,
+      cardNumber: transaction.cardNumber,
+      decisionID: transaction.decisionID + "1",
+      merchantCategory: merchantCategory,
+      merchantName: bevestor,
+      timestamp: transaction.timestamp,
+      userId: transaction.userId
+    };
   } else {
-    newAmount = Math.ceil(transaction.amount / 10) * 10 - transaction.amount;
-    newAmount = Number(newAmount.toFixed(2));
+    return {};
   }
-
-  console.log(newAmount, rule.ruleType, transaction.amount);
-
-  const merchantCategory = parseCategoryCode("0000");
-
-  return {
-    amount: newAmount,
-    cardNumber: transaction.cardNumber,
-    decisionID: transaction.decisionID + "1",
-    merchantCategory: merchantCategory,
-    merchantName: bevestor,
-    timestamp: transaction.timestamp,
-    userId: transaction.userId
-  };
 }
 
+/**
+ * @function
+ * @name executeInvestment
+ * @param {Object} transaction investment transaction
+ * @param {String} username investing username
+ * @description "loop around" for second transaction
+ */
 function executeInvestment(transaction, username) {
-  // console.log("ei", JSON.stringify(transaction));
-  console.log("ei", username, transaction);
   GetUser(transaction.cardNumber, transaction);
-
-  // console.log("executeInvestment", transaction, username);
 }
 
 // app listening on port 3000
@@ -220,7 +217,6 @@ app.listen(3000, () => {
 
 // POST of VISA-transaction-notification
 app.post("/api/transactionDetails", (req, res, next) => {
-  // console.log(req);
   // extract data from incoming request body
   [...notificationDetails] = req.body.resource.notificationDetails;
   notificationPayload =
@@ -253,11 +249,8 @@ app.post("/api/transactionDetails", (req, res, next) => {
     userId
   };
 
-  // console.log(transaction);
   var username = GetUser(cardNumber, transaction);
 
-  // pushing transaction to db when user is identified
-  // const user =
   // default response - currently no logic
   transaction.responseCode = 200;
   res.send(transaction);
@@ -265,7 +258,6 @@ app.post("/api/transactionDetails", (req, res, next) => {
 
 async function GetUser(cardNumber, transaction) {
   let username;
-  // console.log("getUser", cardNumber, transaction);
   try {
     let result = await getUserByPrimaryAccoutNumber(cardNumber)
       .then((value) => {
@@ -276,29 +268,29 @@ async function GetUser(cardNumber, transaction) {
       })
       .then((res) => {
         username = res.username;
+        //
+        // get transaction to be invested upon back into scope
         getTransactionByUserIdTransaction(
           res.username,
           res.transaction.key
         ).then((value) => {
           transaction = value.val();
+          //
+          // no new VISA transaction, if incoming transaction is bevestor transaction
           if (transaction.merchantCategory != bevestor) {
-            // no new VISA transaction, if incoming transaction is bevestor transaction
-            // new POST request to /api/transactionDetails with investment details
+            //
+            // create investment visa transaction from original shopping transaction
             createInvestmentTransaction(transaction, username).then((res) => {
-              // console.log(res, username);
-              if (res.amount) {
+              //
+              // only mock seconds transaction if amount to be invested is not 0
+              if (res && res.amount) {
                 executeInvestment(res, username);
               }
             });
           }
-          // console.log(transaction);
         });
       });
   } catch (err) {
     console.log("err", err);
   }
-  // );
-  // sampleTransactionInvest;
-  // console.log(transaction);
-  // const decisionID = transaction.decisionID;
 }
