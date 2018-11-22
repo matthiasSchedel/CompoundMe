@@ -1,7 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var firebase = require("firebase");
-var cors = require('cors');
+var cors = require("cors");
+
+// var sampleTransactionInvest = require("./samples/transactionSampleInvestment.json");
+const BEVESTOR = "BEVESTOR";
 
 // initialize Firebase
 var firebaseConfig = {
@@ -16,70 +19,251 @@ firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the database service
 var db = firebase.database();
-const app_url = "*";
+
 // inizialize Express
 var app = express();
 app.use(cors());
 app.use(bodyParser());
 
+/**
+ * @function
+ * @name parseCategoryCode
+ * @param {String} categoryCode VISA merchant category code
+ * @returns {String} category parsed category String
+ */
 function parseCategoryCode(categoryCode) {
-  // eval transformation of categoryCode to category
+  switch (categoryCode) {
+    case "0000":
+      return BEVESTOR;
+      break;
+    case "5321":
+      return "DepartmentStore";
+      break;
+    case "5462":
+      return "Bakery";
+      break;
+    case "5732":
+      return "Electronics";
+      break;
+    case "5814":
+      return "FastFood";
+      break;
+    case "5921":
+      return "Beverages";
+      break;
 
-  var category = "Fast-Food";
-
-  return category;
+    default:
+      break;
+  }
 }
 
+/**
+ * @function
+ * @name pushTransactionToDb
+ * @param {Object} transaction transaction to be inserted into firebase
+ * @param {String} userid user to whom the transaction belongs
+ */
 function pushTransactionToDb(transaction, userid) {
-  db.ref(`/users/${userid}/transactions`).push(transaction);
-  // db.ref("/users/userid/transaction") .push({ descisionId, ... })
+  return db.ref(`/users/${userid}/transactions`).push(transaction);
 }
 
+/**
+ * @function
+ * @name getUserByPrimaryAccoutNumber
+ * @param {string} primaryAccountNumber VISA account number to be matched to CM username
+ * @returns {string}
+ */
 function getUserByPrimaryAccoutNumber(primaryAccountNumber) {
-  // db.ref(``);
+  const username = db.ref(`/translateCardToUser/${primaryAccountNumber}`).once(
+    "value",
+    (snapshot) => {
+      return snapshot.val();
+    },
+    (errorObject) => {
+      console.error("error", errorObject);
+    }
+  );
+  return username;
 }
 
-app.listen(3000,() => {
+/**
+ * @function
+ * @name getTransactionByUserIdTransaction
+ * @param {Stirng} userid transactionid on this userid is to be retrieved
+ * @param {String} transactionid transactionid to be retrieved
+ * @returns {Object} retrieved transaction
+ */
+function getTransactionByUserIdTransaction(userid, transactionid) {
+  const transaction = db
+    .ref(`/users/${userid}/transactions/${transactionid}`)
+    .once(
+      "value",
+      (snapshot) => {
+        return snapshot.val();
+      },
+      (errorObject) => {
+        console.error("error", errorObject);
+      }
+    );
+  return transaction;
+}
+
+/**
+ * @function
+ * @name getUserByPrimaryAccoutNumber
+ * @param {string} primaryAccountNumber VISA account number to be matched to CM username
+ * @returns {string}
+ */
+async function getApplicableRuleByCategory(category, username) {
+  let newfetchedRules;
+  // get rules by username
+  let rules = await db
+    .ref(`/users/${username}/rules`)
+    .once("value", (snapshot) => {
+      // extract actual rules from firebase response
+      let fetchedRules = Object.entries(snapshot.val());
+
+      // only retrieve active rules with matching category
+      newfetchedRules = fetchedRules.filter(
+        (item) => item[1].active && item[1].category == category
+      );
+      return newfetchedRules;
+    });
+  // mock: only fetch one rule
+  return newfetchedRules[0];
+}
+
+/**
+ * @function
+ * @name createInvestmentTransaction
+ * @param {Object} transaction transaction to be invested upon
+ * @returns new investment Object
+ */
+async function createInvestmentTransaction(transaction, username) {
+  var applicableRules = await getApplicableRuleByCategory(
+    transaction.merchantCategory,
+    username
+  );
+  if (applicableRules) {
+    [ruleId, rule] = applicableRules;
+
+    var newAmount;
+
+    if (rule.ruleType == "Amount") {
+      newAmount = rule.amount;
+    } else {
+      newAmount = Math.ceil(transaction.amount / 10) * 10 - transaction.amount;
+      newAmount = Number(newAmount.toFixed(2));
+    }
+
+    const merchantCategory = parseCategoryCode("0000");
+
+    return {
+      amount: newAmount,
+      cardNumber: transaction.cardNumber,
+      decisionID: transaction.decisionID + "1",
+      merchantCategory: merchantCategory,
+      merchantName: BEVESTOR,
+      timestamp: transaction.timestamp,
+      userId: transaction.userId
+    };
+  } else {
+    return {};
+  }
+}
+
+/**
+ * @function
+ * @name executeInvestment
+ * @param {Object} transaction investment transaction
+ * @param {String} username investing username
+ * @description "loop around" for second transaction
+ */
+function executeInvestment(transaction, username) {
+  GetUser(transaction.cardNumber, transaction);
+}
+
+// app listening on port 3000
+app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
-app.post("/api/transactionDetails", (req, res, next) => {
 
-  console.log('Got request - with headers', JSON.stringify(req.headers));
+// POST of VISA-transaction-notification
+app.post("/api/transactionDetails", (req, res, next) => {
   // extract data from incoming request body
   [...notificationDetails] = req.body.resource.notificationDetails;
   notificationPayload =
     notificationDetails[0].outBoundAlertsNotificationPayload;
 
+  transactionDetails = notificationPayload.transactionDetails;
+  transactionOutcome = notificationPayload.transactionOutcome;
+
+  // retrieving fields from VISA-Request
+  const cardNumber = transactionDetails.primaryAccountNumber;
+  const merchantInfo = transactionDetails.merchantInfo;
+  const amount = transactionDetails.cardholderBillAmount / 100;
+  const timestamp = transactionDetails.requestReceivedTimeStamp;
+  const userId = transactionDetails.userIdentifier;
+  const merchantCategoryCode = merchantInfo.merchantCategoryCode;
+  const merchantName = merchantInfo.name;
+  const decisionID = transactionOutcome.decisionID;
+
+  // parse merchantCategoryCode into merchantCategory
+  const merchantCategory = parseCategoryCode(merchantCategoryCode);
+
+  // constructing transaction object to be stored in firebase
   const transaction = {
-    primaryAccountNumber:
-      notificationPayload.transactionDetails.primaryAccountNumber,
-    userIdentifier: notificationPayload.transactionDetails.userIdentifier,
-    requestReceivedTimeStamp:
-      notificationPayload.transactionDetails.requestReceivedTimeStamp,
-    merchantName: notificationPayload.transactionDetails.merchantInfo.name
+    decisionID,
+    cardNumber,
+    amount,
+    merchantName,
+    merchantCategory,
+    timestamp,
+    userId
   };
-    // res.append('Access-Control-Allow-Origin', "*");
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-  // console.log(transaction);
-  console.log('Got request from',req.originalUrl);
+
+  var username = GetUser(cardNumber, transaction);
+
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.append("Access-Control-Allow-Headers", "Content-Type");
   res.send(transaction);
-  // body = req.body;
-
-  // const transaction = {
-  //   cardNr: body.primaryAccountNumber,
-  //   amount: body.transactionAmount,
-  //   merchantName: body.MerchantInfo.name,
-  //   merchantCategory:
-  // };
-  // const cardNumber =
-  //   // userId to be fetched from firebase by mapping VISA-Card-number to userId
-  //   // const userId;
-  //   // db.ref("/users/"+userId)
-
-  //   (res.body = req.body);
-  // res.body.reply = {
-  //   statusCode: "200"
-  // };
-  // res.send(res.body);
 });
+
+async function GetUser(cardNumber, transaction) {
+  let username;
+  try {
+    let result = await getUserByPrimaryAccoutNumber(cardNumber)
+      .then((value) => {
+        return {
+          transaction: pushTransactionToDb(transaction, value.val()),
+          username: value.val()
+        };
+      })
+      .then((res) => {
+        username = res.username;
+        //
+        // get transaction to be invested upon back into scope
+        getTransactionByUserIdTransaction(
+          res.username,
+          res.transaction.key
+        ).then((value) => {
+          transaction = value.val();
+          //
+          // no new VISA transaction, if incoming transaction is BEVESTOR transaction
+          if (transaction.merchantCategory != BEVESTOR) {
+            //
+            // create investment visa transaction from original shopping transaction
+            createInvestmentTransaction(transaction, username).then((res) => {
+              //
+              // only mock seconds transaction if amount to be invested is not 0
+              if (res && res.amount) {
+                executeInvestment(res, username);
+              }
+            });
+          }
+        });
+      });
+  } catch (err) {
+    console.log("err", err);
+  }
+}

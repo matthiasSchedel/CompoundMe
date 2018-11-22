@@ -1,9 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var firebase = require("firebase");
-var request = require("request");
+var cors = require("cors");
 
-var sampleTransactionInvest = require("./samples/transactionSampleInvestment.json");
+// var sampleTransactionInvest = require("./samples/transactionSampleInvestment.json");
 const BEVESTOR = "BEVESTOR";
 
 // initialize Firebase
@@ -22,6 +22,7 @@ var db = firebase.database();
 
 // inizialize Express
 var app = express();
+app.use(cors());
 app.use(bodyParser());
 
 /**
@@ -109,47 +110,6 @@ function getTransactionByUserIdTransaction(userid, transactionid) {
 
 /**
  * @function
- * @name transformTransactionIntoVisa
- * @param {Object} transaction transcation to be transformed into VISA transaction
- * @returns {Object} transaction in VISA format
- */
-// function transformTransactionIntoVisa(transaction) {
-//   return {
-//     receivedTimestamp: new Date(),
-//     resource: {
-//       notificationDetails: [
-//         {
-//           outBoundAlertsNotificationPayload: {
-//             transactionDetails: {
-//               primaryAccountNumber: transaction.cardNumber,
-//               userIdentifier: transaction.userId,
-//               cardholderBillAmount: transaction.amount * 100,
-//               requestReceivedTimeStamp: new Date(),
-//               merchantInfo: {
-//                 name: BEVESTOR,
-//                 addressLines: ["Hamburger Allee 14"],
-//                 city: "Frankfurt am Main",
-//                 postalCode: "60486",
-//                 countryCode: "GER",
-//                 merchantCategoryCode: "0000",
-//                 currencyCode: "840"
-//               }
-//             },
-//             transactionOutcome: {
-//               documentID: "ctc-vd-1275e7cc-6acb-4504-a812-84f70a550262",
-//               transactionApproved: "ACCEPTED",
-//               decisionResponseTimeStamp: "2018-05-31 17:23:57",
-//               decisionID: "ctc-vd-ed7d4976-ce02-4a11-a34e-4008681ffadc"
-//             }
-//           }
-//         }
-//       ]
-//     }
-//   };
-// }
-
-/**
- * @function
  * @name getUserByPrimaryAccoutNumber
  * @param {string} primaryAccountNumber VISA account number to be matched to CM username
  * @returns {string}
@@ -169,7 +129,6 @@ async function getApplicableRuleByCategory(category, username) {
       );
       return newfetchedRules;
     });
-  console.log("newfetchedRules", newfetchedRules);
   // mock: only fetch one rule
   return newfetchedRules[0];
 }
@@ -265,8 +224,8 @@ app.post("/api/transactionDetails", (req, res, next) => {
 
   var username = GetUser(cardNumber, transaction);
 
-  // default response - currently no logic
-  transaction.responseCode = 200;
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.append("Access-Control-Allow-Headers", "Content-Type");
   res.send(transaction);
 });
 
