@@ -34,6 +34,7 @@ class InvestementList extends Component {
                         backgroundColor: "#ffffff"
                     }}
                 >
+                    {" "}
                     Total amount this week:
                     <Text
                         style={{
@@ -54,6 +55,7 @@ class InvestementList extends Component {
                         backgroundColor: "#ffffff"
                     }}
                 >
+                    {" "}
                     Total amount this month:
                     <Text
                         style={{
@@ -75,6 +77,7 @@ class InvestementList extends Component {
                         backgroundColor: "#ffffff"
                     }}
                 >
+                    {" "}
                     Projections 2019:
                     <Text
                         style={{
