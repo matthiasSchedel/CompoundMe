@@ -24,7 +24,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        8.00 €
+                        12.30 €
                     </Text>
                 </Text>
                 <Text
@@ -87,7 +87,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        91.002 €{" "}
+                        2,477 €{" "}
                     </Text>
                 </Text>
                 <Divider style={{ height: 3, backgroundColor: "black" }} />

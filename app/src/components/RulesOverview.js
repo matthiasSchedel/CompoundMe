@@ -13,7 +13,7 @@ class RulesOverview extends Component {
     onSubmit() {
         const localNotification = {
             title: "Congrats - You Invested",
-            body: `You invest ${this.props.amount} keep going like that`
+            body: `You invest ${this.props.transaction} keep going like that`
         };
 
         if (this.props.triggerNotification) {
@@ -37,6 +37,38 @@ class RulesOverview extends Component {
 
     listItemStyles() {
         return this.state.isActive ? styles.active : styles.inactive;
+    }
+
+    renderRules() {
+        if (this.props.showRule) {
+            return (
+                <ListItem
+                    key={4}
+                    hideChevron
+                    subtitle={
+                        <View style={styles.subtitleView}>
+                            <ToggleSwitch
+                                isOn={true}
+                                onColor="green"
+                                offColor="red"
+                                label="Fastfood 5€"
+                                labelStyle={{
+                                    color: "black",
+                                    fontWeight: "900",
+                                    fontSize: 20,
+                                    paddingRight: 212
+                                }}
+                                size="small"
+                                onToggle={() => {
+                                    {
+                                    }
+                                }}
+                            />
+                        </View>
+                    }
+                />
+            );
+        }
     }
 
     render() {
@@ -120,31 +152,7 @@ class RulesOverview extends Component {
                             </View>
                         }
                     />
-                    <ListItem
-                        key={4}
-                        hideChevron
-                        subtitle={
-                            <View style={styles.subtitleView}>
-                                <ToggleSwitch
-                                    isOn={true}
-                                    onColor="green"
-                                    offColor="red"
-                                    label="Fastfood 5€"
-                                    labelStyle={{
-                                        color: "black",
-                                        fontWeight: "900",
-                                        fontSize: 20,
-                                        paddingRight: 212
-                                    }}
-                                    size="small"
-                                    onToggle={() => {
-                                        {
-                                        }
-                                    }}
-                                />
-                            </View>
-                        }
-                    />
+                    {this.renderRules()}
                 </List>
                 <CardSection
                     style={{
@@ -184,21 +192,21 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-    const { amount } = state.rule;
+    const { transactions, showRule } = state.rule;
 
     let lastAmount = 0;
     let triggerNotification = false;
-    Object.entries(amount).map(item => {
+    Object.entries(transactions).map(transaction => {
         if (
-            item[1].merchantCategory === "BEVESTOR" &&
-            new Date(item[1].timestamp) >= new Date() - 120000
+            transaction[1].merchantCategory === "BEVESTOR" &&
+            new Date(transaction[1].timestamp) >= new Date() - 120000
         ) {
-            lastAmount = item[1].amount;
+            lastAmount = transaction[1].amount;
             triggerNotification = true;
         }
     });
 
-    return { amount: lastAmount, triggerNotification };
+    return { transaction: lastAmount, triggerNotification, showRule };
 };
 
 export default connect(
