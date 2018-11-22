@@ -54,9 +54,12 @@ const AMAZON_FallbackIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
         let previousSpeech = getPreviousSpeechOutput(sessionAttributes);
+        if (previousSpeech === undefinded || previousSpeech.outputSpeech === undefined) {
+            previousSpeech.outputSpeech = 'hallo dein Investmentbetrag in diesem Monat verl?§uft sich bereits auf 498 Euro. '; 
+        }
 
         return responseBuilder
-            .speak('Sorry I didnt catch what you said, ' + stripSpeak(previousSpeech.outputSpeech))
+            .speak('Entschuldigung ich habe das nicht verstanden, ' + stripSpeak(previousSpeech.outputSpeech))
             .reprompt(stripSpeak(previousSpeech.reprompt))
             .getResponse();
     },
@@ -73,7 +76,7 @@ const AMAZON_CancelIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
 
-        let say = 'Okay, talk to you later! ';
+        let say = 'Okay, wir sprechen später! ';
 
         return responseBuilder
             .speak(say)
@@ -96,15 +99,15 @@ const AMAZON_HelpIntent_Handler =  {
         let intents = getCustomIntents();
         let sampleIntent = randomElement(intents);
 
-        let say = 'You asked for help. '; 
+        let say = 'Du hast um Hilfe gebeten?. '; 
 
         let previousIntent = getPreviousIntent(sessionAttributes);
         if (previousIntent && !handlerInput.requestEnvelope.session.new) {
-             say += 'Your last intent was ' + previousIntent + '. ';
+             say += 'Deine letzte Frage war ' + previousIntent + '. ';
          }
         // say +=  'I understand  ' + intents.length + ' intents, '
 
-        say += ' Here something you can ask me, ' + getSampleUtterance(sampleIntent);
+        say += ' Hier ist eine Beispielfrage, ' + getSampleUtterance(sampleIntent);
 
         return responseBuilder
             .speak(say)
@@ -124,7 +127,7 @@ const AMAZON_StopIntent_Handler =  {
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
 
-        let say = 'Okay, talk to you later! ';
+        let say = 'Okay, wir reden später! ';
 
         return responseBuilder
             .speak(say)
@@ -143,12 +146,12 @@ const AMAZON_NavigateHomeIntent_Handler =  {
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'Hello from AMAZON.NavigateHomeIntent. ';
+        let say = 'Hallo vom AMAZON.NavigateHomeIntent. ';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('try again, ' + say)
+            .reprompt('Versuche es noch einmal, ' + say)
             .getResponse();
     },
 };
@@ -163,12 +166,12 @@ const monthlyInvstments_Handler =  {
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'Hello from monthlyInvstments. ';
+        let say = 'hallo dein Investmentbetrag in diesem Monat verläuft sich bereits auf 498 Euro. ';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('try again, ' + say)
+            .reprompt('versuche es nochmal ' + say)
             .getResponse();
     },
 };
@@ -183,12 +186,12 @@ const InvestmentsWoche_Handler =  {
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        let say = 'Hello from InvestmentsWoche. ';
+        let say = 'hallo dein Investmentbetrag in dieser Woche verläuft sich bereits auf 193 Euro. ';
 
 
         return responseBuilder
             .speak(say)
-            .reprompt('try again, ' + say)
+            .reprompt('probiere es nochmal, ' + say)
             .getResponse();
     },
 };
@@ -201,7 +204,7 @@ const LaunchRequest_Handler =  {
     handle(handlerInput) {
         const responseBuilder = handlerInput.responseBuilder;
 
-        let say = 'hello' + ' and welcome to ' + invocationName + ' ! Say help to hear some options.';
+        let say = 'Hallo' + ' und Willkommen zu ' + invocationName + ' ! Sage hilfe um mehr optionen zu hören.';
 
         let skillTitle = capitalize(invocationName);
 
@@ -209,8 +212,8 @@ const LaunchRequest_Handler =  {
         return responseBuilder
             .speak(say)
             .reprompt('try again, ' + say)
-            .withStandardCard('Welcome!', 
-              'Hello!\nThis is a card for your skill, ' + skillTitle,
+            .withStandardCard('Willkommen!', 
+              'Hallo!\n dies ist eine Karte für deinen Skill, ' + skillTitle,
                welcomeCardImg.smallImageUrl, welcomeCardImg.largeImageUrl)
             .getResponse();
     },
@@ -222,7 +225,7 @@ const SessionEndedHandler =  {
         return request.type === 'SessionEndedRequest';
     },
     handle(handlerInput) {
-        console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
+        console.log(`Sitzung endete mit Grund: ${handlerInput.requestEnvelope.request.reason}`);
         return handlerInput.responseBuilder.getResponse();
     }
 };
@@ -234,12 +237,12 @@ const ErrorHandler =  {
     handle(handlerInput, error) {
         const request = handlerInput.requestEnvelope.request;
 
-        console.log(`Error handled: ${error.message}`);
+        console.log(`Fehler gehandelt: ${error.message}`);
         // console.log(`Original Request was: ${JSON.stringify(request, null, 2)}`);
 
         return handlerInput.responseBuilder
-            .speak(`Sorry, your skill got this error.  ${error.message} `)
-            .reprompt(`Sorry, your skill got this error.  ${error.message} `)
+            .speak(`Entschuldigung aber du hast diesen Fehler bekommen.  ${error.message} `)
+            .reprompt(`Entschuldigung aber dein Skill hat diesen Fehler bekommen.  ${error.message} `)
             .getResponse();
     }
 };
@@ -257,7 +260,7 @@ const APP_ID = "amzn1.ask.skill.54dded55-b917-4004-b951-1399e9860230";  // TODO 
 // 3.  Helper Functions ===================================================================
 
 function capitalize(myString) {
-
+    console.log('capitalize',myString);
      return myString.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); }) ;
 }
 
@@ -267,6 +270,7 @@ function randomElement(myArray) {
 } 
  
 function stripSpeak(str) { 
+    console.log('strip speak',str);
     return(str.replace('<speak>', '').replace('</speak>', '')); 
 } 
  
@@ -592,7 +596,7 @@ const ResponseRecordSpeechOutputInterceptor = {
  
 const ResponsePersistenceInterceptor = { 
     process(handlerInput, responseOutput) { 
- 
+        
         const ses = (typeof responseOutput.shouldEndSession == "undefined" ? true : responseOutput.shouldEndSession); 
  
         if(ses || handlerInput.requestEnvelope.request.type == 'SessionEndedRequest') { // skill was stopped or timed out 
@@ -655,16 +659,17 @@ exports.handler = skillBuilder
     .addRequestInterceptors(RequestHistoryInterceptor)
 
 
-   // .addResponseInterceptors(ResponseRecordSpeechOutputInterceptor)
+ .addResponseInterceptors(ResponsePersistenceInterceptor)
 
- // .addRequestInterceptors(RequestPersistenceInterceptor)
- // .addResponseInterceptors(ResponsePersistenceInterceptor)
 
- // .withTableName("askMemorySkillTable")
- // .withAutoCreateTable(true)
 
     .lambda();
 
+
+   // .addResponseInterceptors(ResponseRecordSpeechOutputInterceptor)
+ // .addRequestInterceptors(RequestPersistenceInterceptor)
+  // .withTableName("askMemorySkillTable")
+ // .withAutoCreateTable(true)
 
     console.log('Test Test')
 
