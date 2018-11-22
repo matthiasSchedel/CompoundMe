@@ -73,7 +73,7 @@ async function post(article_id) {
                                 "region": "CO",
                                 "postalCode": "80130",
                                 "countryCode": "USA",
-                                "merchantCategoryCode": article.categoryCode,
+                                "merchantCategoryCode": String(article.categoryCode),
                                 "currencyCode": "840"
                             }
                         },
