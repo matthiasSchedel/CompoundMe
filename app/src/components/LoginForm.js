@@ -68,7 +68,7 @@ class LoginForm extends Component {
                     </CardSection>
                     <CardSection>
                         <Input
-                            label="Password"
+                            label="Passwort"
                             secureTextEntry
                             placeholder="password"
                             value={this.props.password}
@@ -77,7 +77,7 @@ class LoginForm extends Component {
                     </CardSection>
                     {this.renderError()}
                     <CardSection>{this.renderLoginButton()}</CardSection>
-                    <CardSection>{<Button>Register</Button>}</CardSection>
+                    <CardSection>{<Button>Registrieren</Button>}</CardSection>
                 </Card>
             </View>
         );

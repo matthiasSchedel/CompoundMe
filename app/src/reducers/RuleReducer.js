@@ -10,11 +10,13 @@ import {
 
 const INITIAL_SATE = {
     active: true,
-    ruleType: "Amount",
+    ruleType: "Fester Betrag",
     showAmount: undefined,
     amount: "",
-    category: "Dealers/Stations",
-    loading: false
+    category: "Fastfood",
+    loading: false,
+    transactions: "",
+    showRule: false
 };
 
 export default (RuleReducer = (state = INITIAL_SATE, action) => {
@@ -26,11 +28,11 @@ export default (RuleReducer = (state = INITIAL_SATE, action) => {
         case SAVING_NEW_RULE:
             return { ...state, loading: true };
         case NEW_RULE_SAVED:
-            return { ...state, ...INITIAL_SATE };
+            return { ...state, ...INITIAL_SATE, showRule: true };
         case NEW_INVESTMENT:
             return {
                 ...state,
-                amount: action.payload
+                transactions: action.payload
             };
         default:
             return state;

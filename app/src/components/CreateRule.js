@@ -21,30 +21,23 @@ class CreateRule extends Component {
             return <Spinner size="large" />;
         }
         return (
-            <Button onPress={this.onSaveButtonPress.bind(this)}>Save</Button>
+            <Button onPress={this.onSaveButtonPress.bind(this)}>
+                Erstellen
+            </Button>
         );
     }
 
     render() {
-        const categories = [
-            "Dealers/Stations",
-            "Digital Goods",
-            "Recreation",
-            "Restaurant/Caterer",
-            "Fastfood",
-            "Services",
-            "Stores",
-            "Travel"
-        ];
+        const categories = ["Fastfood", "Supermarkt", "Kino", "Tankstelle"];
 
-        const types = ["Amount", "Round Up"];
+        const types = ["Fester Betrag", "Aufrunden"];
 
         return (
             <View>
                 <Card>
                     <CardSection>
                         <View style={styles.pickerContainer}>
-                            <Text style={styles.pickerText}>Category</Text>
+                            <Text style={styles.pickerText}>Kategorie</Text>
                             <Picker
                                 value={this.props.category}
                                 style={styles.picker}
@@ -69,7 +62,7 @@ class CreateRule extends Component {
                     </CardSection>
                     <CardSection>
                         <View style={styles.pickerContainer}>
-                            <Text style={styles.pickerText}>Type</Text>
+                            <Text style={styles.pickerText}>Art</Text>
                             <Picker
                                 style={styles.picker}
                                 mode={"dropdown"}
@@ -93,7 +86,7 @@ class CreateRule extends Component {
                     </CardSection>
                     <CardSection style={this.props.showAmount}>
                         <Input
-                            label="Amount (€)"
+                            label="Betrag (€)"
                             placeholder="10"
                             onChangeText={this.onAmountChange.bind(this)}
                             value={this.props.amount}

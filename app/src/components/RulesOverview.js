@@ -13,7 +13,7 @@ class RulesOverview extends Component {
     onSubmit() {
         const localNotification = {
             title: "Congrats - You Invested",
-            body: `You invest ${this.props.amount} keep going like that`
+            body: `You invest ${this.props.transaction} keep going like that`
         };
 
         if (this.props.triggerNotification) {
@@ -39,6 +39,38 @@ class RulesOverview extends Component {
         return this.state.isActive ? styles.active : styles.inactive;
     }
 
+    renderRules() {
+        if (this.props.showRule) {
+            return (
+                <ListItem
+                    key={4}
+                    hideChevron
+                    subtitle={
+                        <View style={styles.subtitleView}>
+                            <ToggleSwitch
+                                isOn={true}
+                                onColor="green"
+                                offColor="red"
+                                label="Fastfood 5€ fest"
+                                labelStyle={{
+                                    color: "black",
+                                    fontWeight: "900",
+                                    fontSize: 20,
+                                    paddingRight: 175
+                                }}
+                                size="small"
+                                onToggle={() => {
+                                    {
+                                    }
+                                }}
+                            />
+                        </View>
+                    }
+                />
+            );
+        }
+    }
+
     render() {
         return (
             <ScrollView>
@@ -54,12 +86,12 @@ class RulesOverview extends Component {
                                     isOn={false}
                                     onColor="green"
                                     offColor="red"
-                                    label="Services 3€"
+                                    label="Supermarkt 3€ fest"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "400",
                                         fontSize: 20,
-                                        paddingRight: 215
+                                        paddingRight: 150
                                     }}
                                     size="small"
                                     onToggle={() => {
@@ -79,12 +111,12 @@ class RulesOverview extends Component {
                                     isOn={false}
                                     onColor="green"
                                     offColor="red"
-                                    label="Round Up Digital Goods"
+                                    label="Im Kino aufrunden"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "400",
                                         fontSize: 20,
-                                        paddingRight: 110
+                                        paddingRight: 155
                                     }}
                                     size="small"
                                     onToggle={() => {
@@ -105,12 +137,12 @@ class RulesOverview extends Component {
                                     isOn={this.state.isActive}
                                     onColor="green"
                                     offColor="red"
-                                    label="Round Up Travel"
+                                    label="Im Supermarkt aufrunden"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "900",
                                         fontSize: 20,
-                                        paddingRight: 170
+                                        paddingRight: 90
                                     }}
                                     size="small"
                                     onToggle={isOn => {
@@ -120,31 +152,7 @@ class RulesOverview extends Component {
                             </View>
                         }
                     />
-                    <ListItem
-                        key={4}
-                        hideChevron
-                        subtitle={
-                            <View style={styles.subtitleView}>
-                                <ToggleSwitch
-                                    isOn={true}
-                                    onColor="green"
-                                    offColor="red"
-                                    label="Fastfood 5€"
-                                    labelStyle={{
-                                        color: "black",
-                                        fontWeight: "900",
-                                        fontSize: 20,
-                                        paddingRight: 212
-                                    }}
-                                    size="small"
-                                    onToggle={() => {
-                                        {
-                                        }
-                                    }}
-                                />
-                            </View>
-                        }
-                    />
+                    {this.renderRules()}
                 </List>
                 <CardSection
                     style={{
@@ -158,7 +166,7 @@ class RulesOverview extends Component {
                             Actions.rules();
                         }}
                     >
-                        Add a Rule
+                        Neue Regel erstellen
                     </Button>
                 </CardSection>
             </ScrollView>
@@ -184,26 +192,24 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-    const { amount } = state.rule;
+    const { transactions, showRule } = state.rule;
 
     let lastAmount = 0;
     let triggerNotification = false;
-    Object.entries(amount).map(item => {
+    Object.entries(transactions).map(transaction => {
         if (
-            item[1].merchantCategory === "BEVESTOR" &&
-            new Date(item[1].timestamp) >= new Date() - 120000
+            transaction[1].merchantCategory === "BEVESTOR" &&
+            new Date(transaction[1].timestamp) >= new Date() - 120000
         ) {
-            lastAmount = item[1].amount;
+            lastAmount = transaction[1].amount;
             triggerNotification = true;
         }
     });
 
-    return { amount: lastAmount, triggerNotification };
+    return { transaction: lastAmount, triggerNotification, showRule };
 };
 
 export default connect(
     mapStateToProps,
     { transactionFetch }
 )(RulesOverview);
-
-// && new Date(item[1].timestamp) >= new Date() - 120000
