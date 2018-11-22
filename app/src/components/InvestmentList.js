@@ -15,7 +15,7 @@ class InvestementList extends Component {
                     }}
                 >
                     {" "}
-                    Total amount today:
+                    Heute investiert:
                     <Text
                         style={{
                             fontSize: 18,
@@ -24,7 +24,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        12.30 €
+                        12,30 €
                     </Text>
                 </Text>
                 <Text
@@ -35,7 +35,7 @@ class InvestementList extends Component {
                     }}
                 >
                     {" "}
-                    Total amount this week:
+                    Diese Woche investiert:
                     <Text
                         style={{
                             fontSize: 18,
@@ -44,7 +44,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        13.10 €
+                        13,10 €
                     </Text>
                 </Text>
 
@@ -56,7 +56,7 @@ class InvestementList extends Component {
                     }}
                 >
                     {" "}
-                    Total amount this month:
+                    Diesen Monat investiert:
                     <Text
                         style={{
                             fontSize: 18,
@@ -65,7 +65,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        192.00€
+                        192,00€
                     </Text>
                 </Text>
                 <Divider style={{ height: 10, backgroundColor: "#eeeeee" }} />
@@ -78,7 +78,7 @@ class InvestementList extends Component {
                     }}
                 >
                     {" "}
-                    Projections 2019:
+                    Vorhersage für 2019:
                     <Text
                         style={{
                             fontSize: 18,
@@ -87,7 +87,7 @@ class InvestementList extends Component {
                         }}
                     >
                         {" "}
-                        2,477 €{" "}
+                        2.477 €{" "}
                     </Text>
                 </Text>
                 <Divider style={{ height: 3, backgroundColor: "black" }} />

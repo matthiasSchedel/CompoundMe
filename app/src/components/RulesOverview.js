@@ -51,12 +51,12 @@ class RulesOverview extends Component {
                                 isOn={true}
                                 onColor="green"
                                 offColor="red"
-                                label="Fastfood 5€"
+                                label="Fastfood 5€ fest"
                                 labelStyle={{
                                     color: "black",
                                     fontWeight: "900",
                                     fontSize: 20,
-                                    paddingRight: 212
+                                    paddingRight: 175
                                 }}
                                 size="small"
                                 onToggle={() => {
@@ -86,12 +86,12 @@ class RulesOverview extends Component {
                                     isOn={false}
                                     onColor="green"
                                     offColor="red"
-                                    label="Services 3€"
+                                    label="Supermarkt 3€ fest"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "400",
                                         fontSize: 20,
-                                        paddingRight: 215
+                                        paddingRight: 150
                                     }}
                                     size="small"
                                     onToggle={() => {
@@ -111,12 +111,12 @@ class RulesOverview extends Component {
                                     isOn={false}
                                     onColor="green"
                                     offColor="red"
-                                    label="Round Up Digital Goods"
+                                    label="Im Kino aufrunden"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "400",
                                         fontSize: 20,
-                                        paddingRight: 110
+                                        paddingRight: 155
                                     }}
                                     size="small"
                                     onToggle={() => {
@@ -137,12 +137,12 @@ class RulesOverview extends Component {
                                     isOn={this.state.isActive}
                                     onColor="green"
                                     offColor="red"
-                                    label="Round Up Travel"
+                                    label="Im Supermarkt aufrunden"
                                     labelStyle={{
                                         color: "black",
                                         fontWeight: "900",
                                         fontSize: 20,
-                                        paddingRight: 170
+                                        paddingRight: 90
                                     }}
                                     size="small"
                                     onToggle={isOn => {
@@ -166,7 +166,7 @@ class RulesOverview extends Component {
                             Actions.rules();
                         }}
                     >
-                        Add a Rule
+                        Neue Regel erstellen
                     </Button>
                 </CardSection>
             </ScrollView>
@@ -213,5 +213,3 @@ export default connect(
     mapStateToProps,
     { transactionFetch }
 )(RulesOverview);
-
-// && new Date(item[1].timestamp) >= new Date() - 120000

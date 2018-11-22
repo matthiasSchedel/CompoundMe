@@ -15,7 +15,7 @@ const IconView = ({ title, focused }) => {
     let size = "";
 
     switch (title) {
-        case "Rules Overview":
+        case "Regeln":
             image = "home";
             size = 36;
             break;
@@ -23,7 +23,7 @@ const IconView = ({ title, focused }) => {
             image = "trending-up";
             size = 36;
             break;
-        case "Transactions":
+        case "Transaktionen":
             image = "inbox";
             size = 32;
             break;
@@ -62,7 +62,7 @@ const RouterComponent = () => {
                         component={RulesOverview}
                         icon={IconView}
                         initial
-                        title="Rules Overview"
+                        title="Regeln"
                     />
 
                     <Scene
@@ -76,7 +76,7 @@ const RouterComponent = () => {
                         key="Transactions"
                         component={TransactionsList}
                         icon={IconView}
-                        title="Transactions"
+                        title="Transaktionen"
                     />
                 </Scene>
 
@@ -84,7 +84,7 @@ const RouterComponent = () => {
                     <Scene
                         key="createNewRule"
                         component={CreateRule}
-                        title="Create New Rule"
+                        title="Neue Regel erstellen"
                         initial
                     />
                 </Scene>

@@ -10,10 +10,10 @@ import {
 
 const INITIAL_SATE = {
     active: true,
-    ruleType: "Amount",
+    ruleType: "Fester Betrag",
     showAmount: undefined,
     amount: "",
-    category: "Dealers/Stations",
+    category: "Fastfood",
     loading: false,
     transactions: "",
     showRule: false

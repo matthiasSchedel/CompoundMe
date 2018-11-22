@@ -14,10 +14,10 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    22.11.18 - Travel: 22.70€
+                                    22.11: Supermarkt: 22.70€
                                 </Text>
                                 <Text style={textStyleRight}>
-                                    Invested 7.30€
+                                    Investiert: 7.30€
                                 </Text>
                             </View>
                         }
@@ -27,32 +27,10 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    22.11.18 - Fastfood: 15,50€
-                                </Text>
-                                <Text style={textStyleRight}>Invested 5€</Text>
-                            </View>
-                        }
-                    />
-                    <ListItem
-                        hideChevron
-                        subtitle={
-                            <View style={subtitleView}>
-                                <Text style={textStyleLeft}>
-                                    21.11.18 - Services: 2€
-                                </Text>
-                                <Text style={textStyleRight}>Invested 3€</Text>
-                            </View>
-                        }
-                    />
-                    <ListItem
-                        hideChevron
-                        subtitle={
-                            <View style={subtitleView}>
-                                <Text style={textStyleLeft}>
-                                    20.11.18 - Travel: 4.90€
+                                    22.11: Fastfood: 15,50€
                                 </Text>
                                 <Text style={textStyleRight}>
-                                    Invested 5.10€
+                                    Investiert: 5€
                                 </Text>
                             </View>
                         }
@@ -62,7 +40,10 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    20.11.18 - Digital Goods: 151€
+                                    21.11: Supermarkt: 2€
+                                </Text>
+                                <Text style={textStyleRight}>
+                                    Investiert: 3€
                                 </Text>
                             </View>
                         }
@@ -72,7 +53,10 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    20.11.18 - Fastfood: 150€
+                                    20.11: Kino: 4.90€
+                                </Text>
+                                <Text style={textStyleRight}>
+                                    Investiert: 5.10€
                                 </Text>
                             </View>
                         }
@@ -82,7 +66,7 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    19.11.18 - Digital Goods: 0.99€
+                                    20.11: Tankstelle: 151€
                                 </Text>
                             </View>
                         }
@@ -92,7 +76,7 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    19.11.18 - Recreation: 100€
+                                    20.11: Fastfood: 150€
                                 </Text>
                             </View>
                         }
@@ -102,7 +86,7 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    18.11.18 - Stores: 9.99€
+                                    19.11: Supermarkt: 0.99€
                                 </Text>
                             </View>
                         }
@@ -112,7 +96,27 @@ class TransactionsList extends Component {
                         subtitle={
                             <View style={subtitleView}>
                                 <Text style={textStyleLeft}>
-                                    17.11.18 - Restaurant: 90€
+                                    19.11: Tankstelle: 100€
+                                </Text>
+                            </View>
+                        }
+                    />
+                    <ListItem
+                        hideChevron
+                        subtitle={
+                            <View style={subtitleView}>
+                                <Text style={textStyleLeft}>
+                                    18.11: Kino: 9.99€
+                                </Text>
+                            </View>
+                        }
+                    />
+                    <ListItem
+                        hideChevron
+                        subtitle={
+                            <View style={subtitleView}>
+                                <Text style={textStyleLeft}>
+                                    17.11: Supermarkt: 90€
                                 </Text>
                             </View>
                         }
@@ -130,11 +134,11 @@ const styles = {
         paddingTop: 5
     },
     textStyleLeft: {
-        flex: 2,
+        flex: 6,
         fontSize: 18
     },
     textStyleRight: {
-        flex: 1,
+        flex: 4,
         fontSize: 18,
         float: "right",
         fontWeight: "bold"
