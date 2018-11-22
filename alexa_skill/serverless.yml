@@ -1,4 +1,3 @@
-
 service: aws-node-alexa-skill
 
 provider:
