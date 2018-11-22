@@ -13,8 +13,14 @@ const items =
         img:"./img/coffee.jpg"
     },
     {
+        name:"Coke",
+        price:"1.70",
+        category:"",
+        img:"./img/coke.jpg"
+    },
+    {
         name:"Sleeping Bag",
-        price:"2.70",
+        price:"22.70",
         category:"",
         img:"./img/sleeping_bag.jpg"
     },
